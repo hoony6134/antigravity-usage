@@ -21,10 +21,12 @@ describe('quota service', () => {
       isLoggedIn: vi.fn().mockReturnValue(true),
       getValidAccessToken: vi.fn().mockResolvedValue('mock-token')
     } as any)
-    vi.mocked(cloudCodeModule.CloudCodeClient).mockImplementation(() => ({
-      loadCodeAssist: vi.fn(),
-      fetchAvailableModels: vi.fn()
-    }) as any)
+    vi.mocked(cloudCodeModule.CloudCodeClient).mockImplementation(function() {
+      return {
+        loadCodeAssist: vi.fn(),
+        fetchAvailableModels: vi.fn()
+      } as any
+    })
   })
 
   describe('fetchQuota', () => {
@@ -53,9 +55,11 @@ describe('quota service', () => {
         protocol: 'http',
         port: 1234
       })
-      vi.mocked(localModule.ConnectClient).mockImplementation(() => ({
-        getUserStatus: vi.fn().mockResolvedValue({})
-      }) as any)
+      vi.mocked(localModule.ConnectClient).mockImplementation(function() {
+        return {
+          getUserStatus: vi.fn().mockResolvedValue({})
+        } as any
+      })
       vi.mocked(localModule.parseLocalQuotaSnapshot).mockReturnValue({
         method: 'local',
         timestamp: '',
@@ -81,9 +85,11 @@ describe('quota service', () => {
         protocol: 'http',
         port: 1234
       })
-      vi.mocked(localModule.ConnectClient).mockImplementation(() => ({
-        getUserStatus: vi.fn().mockResolvedValue({})
-      }) as any)
+      vi.mocked(localModule.ConnectClient).mockImplementation(function() {
+        return {
+          getUserStatus: vi.fn().mockResolvedValue({})
+        } as any
+      })
       vi.mocked(localModule.parseLocalQuotaSnapshot).mockReturnValue({
         method: 'local',
         timestamp: '',
@@ -134,9 +140,11 @@ describe('quota service', () => {
         protocol: 'https',
         port: 60479
       })
-      vi.mocked(localModule.ConnectClient).mockImplementation(() => ({
-        getUserStatus: vi.fn().mockResolvedValue({})
-      }) as any)
+      vi.mocked(localModule.ConnectClient).mockImplementation(function() {
+        return {
+          getUserStatus: vi.fn().mockResolvedValue({})
+        } as any
+      })
       vi.mocked(localModule.parseLocalQuotaSnapshot).mockReturnValue({
         method: 'local',
         timestamp: '',
